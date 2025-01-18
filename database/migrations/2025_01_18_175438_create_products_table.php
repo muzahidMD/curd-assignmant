@@ -10,13 +10,13 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('curds', function (Blueprint $table) {
+        Schema::create('curd', function (Blueprint $table) {
             $table->id();
-            $table->string('product_id');
+            $table->string('product_id')->unique();
             $table->string('name');
-            $table->string('description', '100');
+            $table->string('description', '100')->nullable();
             $table->decimal('price');
-            $table->integer('stock');
+            $table->integer('stock')->nullable();
             $table->string('images');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
@@ -28,6 +28,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('curds');
+        Schema::dropIfExists('products');
     }
 };
